@@ -23,7 +23,7 @@ template<typename T, typename F> void op_deque<T, F>::balance(){
             s1.push({af[i], e});
         }
         for(int i=0; i<rest; i++){
-            T e = i ? op(ab[i], s2.top().second) : ab[i];
+            T e = i ? op(s2.top().second, ab[i]) : ab[i];
             s2.push({ab[i], e});
         }
     }
@@ -42,7 +42,7 @@ template<typename T, typename F> void op_deque<T, F>::push_front(T x){
     balance();
 }
 template<typename T, typename F> void op_deque<T, F>::push_back(T x){
-    T e = s2.empty() ? x : op(x, s2.top().second);
+    T e = s2.empty() ? x : op(s2.top().second, x);
     s2.push({x, e});
     balance();
 }
